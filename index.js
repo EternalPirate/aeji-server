@@ -1,13 +1,14 @@
 const ioClient = require('socket.io-client');
+
 const admin = require("firebase-admin");
-
 const serviceAccount = require("./serviceAccountKey.json");
-const DBqueue = require("./db-queue");
-const urlParser = require('./utils/urlParser');
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+
+const DBqueue = require("./db-queue");
+const urlParser = require('./utils/urlParser');
+
 
 
 
