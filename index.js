@@ -11,7 +11,6 @@ const urlParser = require('./utils/urlParser');
 
 
 
-
 const socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
     reconnection: true,
     reconnectionDelayMax: 5000,
@@ -56,3 +55,10 @@ socket.on('donation', (msg) => {
         }
     }
 });
+
+
+
+// keep alive (after 30min server will sleep)
+setInterval(function() {
+    console.log('drink coffee');
+}, 1500000); // every 25 minutes
