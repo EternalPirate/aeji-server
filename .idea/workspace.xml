@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7911eff5-7fda-440f-836d-6eb449c6a5c9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="7911eff5-7fda-440f-836d-6eb449c6a5c9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -58,8 +56,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="458" />
-    <option name="width" value="1469" />
+    <option name="x" value="373" />
+    <option name="width" value="1554" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
@@ -112,12 +110,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1557563500477</updated>
-      <workItem from="1557563502764" duration="13863000" />
+      <workItem from="1557563502764" duration="14461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13863000" />
+    <option name="totallyTimeSpent" value="14461000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -129,7 +127,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="458" y="0" width="1469" height="1057" extended-state="0" />
+    <frame x="373" y="0" width="1554" height="1057" extended-state="0" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.35470086" />
