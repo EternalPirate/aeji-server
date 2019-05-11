@@ -13,7 +13,6 @@ const urlParser = require('./utils/urlParser');
 
 
 
-
 const socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
     reconnection: true,
     reconnectionDelayMax: 5000,
