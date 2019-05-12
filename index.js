@@ -10,7 +10,6 @@ const DBqueue = require("./db-queue");
 const urlParser = require('./utils/urlParser');
 
 
-
 const socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
     reconnection: true,
     reconnectionDelayMax: 5000,
@@ -56,3 +55,10 @@ socket.on('donation', (msg) => {
     }
 });
 
+
+
+const express = require('express');
+const app = express();
+app.get('/', function (req, res) {
+    res.send('Yo!');
+});
