@@ -19,7 +19,7 @@ socket.on('donation', (msg) => {
         // TODO: remove after tests
         counter++;
         newDonation.amount = counter;
-        newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x1] some text';
+        newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
 
         let videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
 
@@ -35,6 +35,7 @@ socket.on('donation', (msg) => {
             let url = toYouTubeEmbedded(youtubeUrl);
 
             const newVideoObj = {
+                id: +new Date(),
                 message: newDonation.message,
                 username: newDonation.username,
                 amount: newDonation.amount,
@@ -50,5 +51,4 @@ socket.on('donation', (msg) => {
         }
     }
 });
-
 
