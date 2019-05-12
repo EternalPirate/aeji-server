@@ -15,12 +15,12 @@ const socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
     reconnectionDelayMax: 5000,
     reconnectionDelay: 1000,
 });
-socket.on('connect', () => {
+socket.on('connect', function() {
     socket.emit('add-user', {token: 'KflrIWcoLbdpkKQbvrWG', type: 'alert_widget'});
 });
 
 let counter = 0;
-socket.on('donation', (msg) => {
+socket.on('donation', function(msg) {
     const newDonation = JSON.parse(msg);
     if (newDonation) {
         // TODO: remove after tests
