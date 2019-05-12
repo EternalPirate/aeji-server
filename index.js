@@ -1,16 +1,16 @@
-const ioClient = require('socket.io-client');
+var ioClient = require('socket.io-client');
 
-const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccountKey.json");
+var admin = require("firebase-admin");
+var serviceAccount = require("./serviceAccountKey.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
-const DBqueue = require("./db-queue");
-const urlParser = require('./utils/urlParser');
+var DBqueue = require("./db-queue");
+var urlParser = require('./utils/urlParser');
 
 
-const socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
+var socket = ioClient.connect('wss://socket.donationalerts.ru:443', {
     reconnection: true,
     reconnectionDelayMax: 5000,
     reconnectionDelay: 1000,
@@ -19,26 +19,26 @@ socket.on('connect', function() {
     socket.emit('add-user', {token: 'KflrIWcoLbdpkKQbvrWG', type: 'alert_widget'});
 });
 
-let counter = 0;
+var counter = 0;
 socket.on('donation', function(msg) {
-    const newDonation = JSON.parse(msg);
+    var newDonation = JSON.parse(msg);
     if (newDonation) {
         // TODO: remove after tests
         counter++;
         newDonation.amount = counter;
         newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x1] some text';
 
-        const videoReg = newDonation.message.match(/(?<=\[).+?(?=\])/gm);
+        var videoReg = newDonation.message.match(/(?<=\[).+?(?=\])/gm);
 
         if (videoReg && videoReg[0]) {
-            const videoArr = videoReg[0].split(',');
-            const youtubeUrl = videoArr[0];
-            const queueType = videoArr[1].trim();
+            var videoArr = videoReg[0].split(',');
+            var youtubeUrl = videoArr[0];
+            var queueType = videoArr[1].trim();
 
             // convert youtube link tu embedded link
             let url = urlParser.toYouTubeEmbedded(youtubeUrl);
 
-            const newVideoObj = {
+            var newVideoObj = {
                 message: newDonation.message,
                 username: newDonation.username,
                 amount: newDonation.amount,

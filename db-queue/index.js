@@ -1,19 +1,19 @@
-const admin = require("firebase-admin");
+var admin = require("firebase-admin");
 
-const StorageKey = 'queues';
-const StorageCollectionKey = 'videoQueue';
-const DB = admin.firestore().collection(StorageKey);
+var StorageKey = 'queues';
+var StorageCollectionKey = 'videoQueue';
+var DB = admin.firestore().collection(StorageKey);
 
 module.exports = {
     addQueue: async function(queueItem) {
-        const queueType = queueItem.queueType;
-        const queueRef = DB.doc(queueType);
+        var queueType = queueItem.queueType;
+        var queueRef = DB.doc(queueType);
 
         // push to collection new queueItem
         queueRef.collection(StorageCollectionKey).add(queueItem);
 
         // increment videoQueueLen
-        const increment = admin.firestore.FieldValue.increment(1);
+        var increment = admin.firestore.FieldValue.increment(1);
         queueRef.set({
             videoQueueLen: increment,
             queueType

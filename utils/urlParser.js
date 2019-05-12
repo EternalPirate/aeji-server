@@ -2,15 +2,15 @@ module.exports = {
     getURLParameters: function(sURL, paramName) {
         if (sURL.indexOf("?") > 0)
         {
-            const arrParams = sURL.split("?");
-            const arrURLParams = arrParams[1].split("&");
-            const arrParamNames = new Array(arrURLParams.length);
-            const arrParamValues = new Array(arrURLParams.length);
+            var arrParams = sURL.split("?");
+            var arrURLParams = arrParams[1].split("&");
+            var arrParamNames = new Array(arrURLParams.length);
+            var arrParamValues = new Array(arrURLParams.length);
 
             let i = 0;
             for (i = 0; i<arrURLParams.length; i++)
             {
-                const sParam =  arrURLParams[i].split("=");
+                var sParam =  arrURLParams[i].split("=");
                 arrParamNames[i] = sParam[0];
                 if (sParam[1] !== "")
                     arrParamValues[i] = unescape(sParam[1]);
@@ -30,13 +30,13 @@ module.exports = {
         }
     },
     getVideoId: function(url) {
-        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-        const match = url.match(regExp);
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
         return (match&&match[7].length === 11)? match[7] : false;
     },
     toYouTubeEmbedded: function(youtubeUrl) {
-        const videoId = this.getVideoId(youtubeUrl);
-        const time = this.getURLParameters(youtubeUrl, 't');
+        var videoId = this.getVideoId(youtubeUrl);
+        var time = this.getURLParameters(youtubeUrl, 't');
         let url = `https://www.youtube.com/embed/${videoId}`;
         // + start time if we have it
         if (time) {
