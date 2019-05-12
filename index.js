@@ -58,9 +58,3 @@ socket.on('donation', (msg) => {
 
 
 
-require('dns').lookup(require('os').hostname(), function (err, ip) {
-    require('ping').sys.probe(ip, function(isAlive) {
-        const msg = isAlive ? 'host ' + ip + ' is alive' : 'host ' + ip + ' is dead';
-        console.log(msg);
-    });
-});
