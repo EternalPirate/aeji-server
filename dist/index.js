@@ -29,10 +29,12 @@ socket.on('donation', function (msg) {
     counter++;
     newDonation.amount = counter;
     newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x1] some text';
-    var videoReg = newDonation.message.match(/(?<=\[).+?(?=\])/gm);
+    var videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
 
-    if (videoReg && videoReg[0]) {
-      var videoArr = videoReg[0].split(',');
+    if (videoStr) {
+      // remove brackets
+      videoStr = videoStr.replace(/[\[\]']+/g, '');
+      var videoArr = videoStr.split(',');
       var youtubeUrl = videoArr[0];
       var queueType = videoArr[1].trim(); // convert youtube link tu embedded link
 
