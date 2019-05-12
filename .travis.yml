@@ -1,6 +1,0 @@
-language: node_js
-install:
-  - npm i
-cache: npm
-script:
-  - npm start
