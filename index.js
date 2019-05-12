@@ -58,7 +58,6 @@ socket.on('donation', (msg) => {
 
 
 
-// keep alive (after 30min server will sleep)
-setInterval(function() {
-    console.log('drink coffee');
-}, 1500000); // every 25 minutes
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+    console.log('addr: '+add);
+})

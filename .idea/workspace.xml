@@ -17,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="469">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -110,12 +110,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1557563500477</updated>
-      <workItem from="1557563502764" duration="14461000" />
+      <workItem from="1557563502764" duration="15062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14461000" />
+    <option name="totallyTimeSpent" value="15062000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -128,6 +128,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="373" y="0" width="1554" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.35470086" />
@@ -239,7 +240,7 @@
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
