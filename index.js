@@ -44,8 +44,8 @@ socket.on('donation', function(msg) {
                 amount: newDonation.amount,
                 currency: newDonation.currency,
                 date_created: newDonation.date_created,
-                url,
-                queueType
+                url: url,
+                queueType: queueType
             };
 
             console.log(newVideoObj);

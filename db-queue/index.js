@@ -16,7 +16,7 @@ module.exports = {
         var increment = admin.firestore.FieldValue.increment(1);
         queueRef.set({
             videoQueueLen: increment,
-            queueType
+            queueType: queueType
         }, { merge: true });
     }
 };
