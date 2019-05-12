@@ -21,9 +21,12 @@ socket.on('donation', (msg) => {
         newDonation.amount = counter;
         newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x1] some text';
 
-        const videoReg = newDonation.message.match(/(?<=\[).+?(?=\])/gm);
+        let videoReg = newDonation.message.match(/\[([^)]+)\]/gm);
 
         if (videoReg && videoReg[0]) {
+            // remove brackets
+            videoReg = videoReg.replace(/[\[\]']+/g,'');
+
             const videoArr = videoReg[0].split(',');
             const youtubeUrl = videoArr[0];
             const queueType = videoArr[1].trim();
