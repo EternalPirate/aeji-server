@@ -36,7 +36,7 @@ socket.on('donation', function(msg) {
             var queueType = videoArr[1].trim();
 
             // convert youtube link tu embedded link
-            let url = urlParser.toYouTubeEmbedded(youtubeUrl);
+            var url = urlParser.toYouTubeEmbedded(youtubeUrl);
 
             var newVideoObj = {
                 message: newDonation.message,

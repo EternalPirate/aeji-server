@@ -7,7 +7,7 @@ module.exports = {
             var arrParamNames = new Array(arrURLParams.length);
             var arrParamValues = new Array(arrURLParams.length);
 
-            let i = 0;
+            var i = 0;
             for (i = 0; i<arrURLParams.length; i++)
             {
                 var sParam =  arrURLParams[i].split("=");
@@ -37,7 +37,7 @@ module.exports = {
     toYouTubeEmbedded: function(youtubeUrl) {
         var videoId = this.getVideoId(youtubeUrl);
         var time = this.getURLParameters(youtubeUrl, 't');
-        let url = `https://www.youtube.com/embed/${videoId}`;
+        var url = `https://www.youtube.com/embed/${videoId}`;
         // + start time if we have it
         if (time) {
             url += `?start=${time}`;
