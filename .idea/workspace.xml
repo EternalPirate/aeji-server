@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7911eff5-7fda-440f-836d-6eb449c6a5c9" name="Default Changelist" comment="" />
+    <list default="true" id="7911eff5-7fda-440f-836d-6eb449c6a5c9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/serviceAccountKey.json" beforeDir="false" afterPath="$PROJECT_DIR$/serviceAccountKey.json" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,14 +15,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="213">
+              <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/serviceAccountKey.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -66,7 +77,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/serviceAccountKey.json" />
         <option value="$PROJECT_DIR$/utils/as.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.travis.yml" />
@@ -80,6 +90,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/iisnode.yml" />
         <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/serviceAccountKey.json" />
       </list>
     </option>
   </component>
@@ -100,17 +111,6 @@
             <path>
               <item name="aeji-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="aeji-server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="aeji-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="aeji-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="aeji-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="aeji-server" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="db-queue" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -155,12 +155,12 @@
       <option name="presentableId" value="Default" />
       <updated>1557563500477</updated>
       <workItem from="1557563502764" duration="15062000" />
-      <workItem from="1557641875229" duration="10831000" />
+      <workItem from="1557641875229" duration="11123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25893000" />
+    <option name="totallyTimeSpent" value="26185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -173,8 +173,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="373" y="0" width="1554" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16622691" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16622691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -187,7 +188,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900432" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32900432" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31926408" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31926408" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -209,13 +210,6 @@
       </provider>
     </entry>
     <entry file="file://D:/DOWNLOADS/aeji-dfdff-firebase-adminsdk-3bqaq-978a572e10.json" />
-    <entry file="file://$PROJECT_DIR$/serviceAccountKey.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@iktakahiro/youtube-url-parser/lib/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/node_modules/js-video-url-parser/lib/provider/youtube.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/@google-cloud/firestore/types/firestore.d.ts">
@@ -316,11 +310,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="213">
+          <caret line="29" column="22" lean-forward="true" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/DOWNLOADS/aeji-dfdff-firebase-adminsdk-3bqaq-9ca7deec84.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" lean-forward="true" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serviceAccountKey.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
