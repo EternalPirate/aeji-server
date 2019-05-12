@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "firebase-admin": "7.3.0",
+    "ping": "^0.2.2",
     "socket.io-client": "^2.2.0"
   },
   "keywords": [
