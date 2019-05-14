@@ -1,56 +1,50 @@
 "use strict";
 
-var _socket = _interopRequireDefault(require("socket.io-client"));
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _express = _interopRequireDefault(require("express"));
+
+var _cors = _interopRequireDefault(require("cors"));
+
+var _initSocket = require("./views/init-socket");
 
 var _dbQueue = require("./db-queue");
 
-var _urlParser = require("./utils/urlParser");
+var app = (0, _express["default"])();
+var port = 3000;
+app.use(_express["default"].json());
+app.use((0, _cors["default"])({
+  origin: 'http://localhost:4200'
+}));
+var activeUsers = new Set();
+(0, _dbQueue.getUsers)().then(function (users) {
+  if (users && users.length > 0) {
+    users.forEach(function (userData) {
+      var settings = userData.settings;
+      var user = userData.user;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var socket = _socket["default"].connect('wss://socket.donationalerts.ru:443', {
-  reconnection: true,
-  reconnectionDelayMax: 5000,
-  reconnectionDelay: 1000
-});
-
-socket.on('connect', function () {
-  socket.emit('add-user', {
-    token: 'KflrIWcoLbdpkKQbvrWG',
-    type: 'alert_widget'
-  });
-});
-var counter = 0;
-socket.on('donation', function (msg) {
-  var newDonation = JSON.parse(msg);
-
-  if (newDonation) {
-    // TODO: remove after tests
-    counter++;
-    newDonation.amount = counter;
-    newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
-    var videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
-
-    if (videoStr) {
-      // remove brackets
-      videoStr = videoStr.replace(/[\[\]']+/g, '');
-      var videoArr = videoStr.split(',');
-      var youtubeUrl = videoArr[0];
-      var queueType = videoArr[1].trim(); // convert youtube link tu embedded link
-
-      var url = (0, _urlParser.toYouTubeEmbedded)(youtubeUrl);
-      var newVideoObj = {
-        id: +new Date(),
-        message: newDonation.message,
-        username: newDonation.username,
-        amount: newDonation.amount,
-        currency: newDonation.currency,
-        date_created: newDonation.date_created,
-        url: url,
-        queueType: queueType
-      };
-      console.log(newVideoObj);
-      (0, _dbQueue.addQueue)(newVideoObj);
-    }
+      if (user.id && settings.donationalertsId && !activeUsers.has(user.id)) {
+        activeUsers.add(user.id);
+        new _initSocket.DonationAlertsSocket(user.id, settings.donationalertsId);
+      } else {
+        console.error('User have no required data');
+      }
+    });
+  } else {
+    console.error('No users found');
   }
+});
+app.post('/settings', function (req, res) {
+  var donationalertsId = req.body.donationalertsId;
+  var userId = req.get('userId');
+
+  if (userId && donationalertsId && !activeUsers.has(userId)) {
+    activeUsers.add(userId);
+    new _initSocket.DonationAlertsSocket(userId, donationalertsId);
+  }
+
+  res.json(req.body);
+});
+app.listen(port, function () {
+  return console.log("App listening on port ".concat(port, "!"));
 });

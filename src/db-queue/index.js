@@ -6,12 +6,15 @@ admin.initializeApp({
 });
 
 const StorageKey = 'queues';
-const StorageCollectionKey = 'videoQueue';
-const DB = admin.firestore().collection(StorageKey);
+const StorageCollectionKey = 'list';
 
-export function addQueue(queueItem) {
+export function addQueue(userId, queueItem) {
     const queueType = queueItem.queueType;
-    const queueRef = DB.doc(queueType);
+    const queueRef = admin.firestore()
+        .collection('users')
+        .doc(userId)
+        .collection(StorageKey)
+        .doc(queueType);
 
     // push to collection new queueItem
     queueRef.collection(StorageCollectionKey).add(queueItem);
@@ -24,3 +27,12 @@ export function addQueue(queueItem) {
     }, { merge: true });
 }
 
+export async function getUsers() {
+    const docs = await admin.firestore().collection('users').listDocuments();
+
+    return Promise.all(docs.map(async user => {
+        const userData = await user.get();
+
+        return userData.data();
+    }));
+}

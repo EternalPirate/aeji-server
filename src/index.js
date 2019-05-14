@@ -1,54 +1,52 @@
-import io from 'socket.io-client';
-import { addQueue } from './db-queue';
-import { toYouTubeEmbedded } from './utils/urlParser';
+import express from 'express';
+import cors from 'cors';
+import {DonationAlertsSocket} from './views/init-socket';
+import {getUsers} from "./db-queue";
 
 
-const socket = io.connect('wss://socket.donationalerts.ru:443', {
-    reconnection: true,
-    reconnectionDelayMax: 5000,
-    reconnectionDelay: 1000,
-});
-socket.on('connect', () => {
-    socket.emit('add-user', {token: 'KflrIWcoLbdpkKQbvrWG', type: 'alert_widget'});
-});
+const app = express();
+const port = 3000;
+app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
 
-let counter = 0;
-socket.on('donation', (msg) => {
-    const newDonation = JSON.parse(msg);
-    if (newDonation) {
-        // TODO: remove after tests
-        counter++;
-        newDonation.amount = counter;
-        newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
 
-        let videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
+const activeUsers = new Set();
 
-        if (videoStr) {
-            // remove brackets
-            videoStr = videoStr.replace(/[\[\]']+/g,'');
 
-            const videoArr = videoStr.split(',');
-            const youtubeUrl = videoArr[0];
-            const queueType = videoArr[1].trim();
+getUsers().then(users => {
+    if (users && users.length > 0) {
+        users.forEach(userData => {
+            const settings = userData.settings;
+            const user = userData.user;
 
-            // convert youtube link tu embedded link
-            let url = toYouTubeEmbedded(youtubeUrl);
-
-            const newVideoObj = {
-                id: +new Date(),
-                message: newDonation.message,
-                username: newDonation.username,
-                amount: newDonation.amount,
-                currency: newDonation.currency,
-                date_created: newDonation.date_created,
-                url,
-                queueType
-            };
-
-            console.log(newVideoObj);
-
-            addQueue(newVideoObj);
-        }
+            if (
+                user.id
+                && settings.donationalertsId
+                && !activeUsers.has(user.id)
+            ) {
+                activeUsers.add(user.id);
+                new DonationAlertsSocket(user.id, settings.donationalertsId);
+            } else {
+                console.error('User have no required data');
+            }
+        });
+    } else {
+        console.error('No users found');
     }
 });
 
+app.post('/settings', function(req, res){
+    const donationalertsId = req.body.donationalertsId;
+    const userId = req.get('userId');
+
+    if (userId && donationalertsId && !activeUsers.has(userId)) {
+        activeUsers.add(userId);
+        new DonationAlertsSocket(userId, donationalertsId);
+    }
+    res.json(req.body);
+});
+
+
+app.listen(port, () => console.log(`App listening on port ${port}!`));
