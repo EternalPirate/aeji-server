@@ -1,10 +1,13 @@
-import io from 'socket.io-client';
 import { addQueue } from '../db-queue';
 import { toYouTubeEmbedded } from '../utils/urlParser';
+import { DonationAlertsMessage } from './init-socket.models';
+import { IQueueItem } from '../db-queue/index.models';
+const io = require('socket.io-client');
+
 
 
 export class DonationAlertsSocket {
-    constructor(userId, token) {
+    constructor(userId: string, token: string) {
         const socket = io.connect('wss://socket.donationalerts.ru:443', {
             reconnection: true,
             reconnectionDelayMax: 5000,
@@ -16,8 +19,8 @@ export class DonationAlertsSocket {
         });
 
         let counter = 0;
-        socket.on('donation', (msg) => {
-            const newDonation = JSON.parse(msg);
+        socket.on('donation', (msg: any) => {
+            const newDonation: DonationAlertsMessage = JSON.parse(msg);
             if (newDonation) {
                 // TODO: remove after tests
                 counter++;
@@ -28,16 +31,16 @@ export class DonationAlertsSocket {
 
                 if (videoStr) {
                     // remove brackets
-                    videoStr = videoStr.replace(/[\[\]']+/g,'');
+                    videoStr = videoStr.replace(/[\[\]']+/g, '');
 
                     const videoArr = videoStr.split(',');
                     const youtubeUrl = videoArr[0];
                     const queueType = videoArr[1].trim();
 
                     // convert youtube link tu embedded link
-                    let url = toYouTubeEmbedded(youtubeUrl);
+                    const url = toYouTubeEmbedded(youtubeUrl);
 
-                    const newVideoObj = {
+                    const newVideoObj: IQueueItem = {
                         id: +new Date(),
                         message: newDonation.message,
                         username: newDonation.username,

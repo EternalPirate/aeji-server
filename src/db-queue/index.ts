@@ -1,5 +1,7 @@
+import { DocumentData } from '@google-cloud/firestore';
+import { IQueueItem } from './index.models';
 import admin from 'firebase-admin/lib/index';
-import serviceAccount from '../../serviceAccountKey.json';
+const serviceAccount = require('../../serviceAccountKey.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -8,7 +10,7 @@ admin.initializeApp({
 const StorageKey = 'queues';
 const StorageCollectionKey = 'list';
 
-export function addQueue(userId, queueItem) {
+export function addQueue(userId: string, queueItem: IQueueItem) {
     const queueType = queueItem.queueType;
     const queueRef = admin.firestore()
         .collection('users')
@@ -27,7 +29,7 @@ export function addQueue(userId, queueItem) {
     }, { merge: true });
 }
 
-export async function getUsers() {
+export async function getUsers(): Promise<DocumentData[]> {
     const docs = await admin.firestore().collection('users').listDocuments();
 
     return Promise.all(docs.map(async user => {
