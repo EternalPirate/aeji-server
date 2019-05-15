@@ -21,6 +21,7 @@ getUsers().then(users => {
             const settings = userData.settings;
             const user = userData.user;
 
+
             if (
                 user.id
                 && settings.donationalertsId
@@ -37,9 +38,9 @@ getUsers().then(users => {
     }
 });
 
-app.post('/settings', function(req, res){
-    const donationalertsId = req.body.donationalertsId;
-    const userId = req.get('userId');
+app.post('/settings', (req, res) => {
+    const donationalertsId = req.body.settings.donationalertsId;
+    const userId = req.body.userId;
 
     if (userId && donationalertsId && !activeUsers.has(userId)) {
         activeUsers.add(userId);

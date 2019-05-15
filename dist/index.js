@@ -35,8 +35,8 @@ var activeUsers = new Set();
   }
 });
 app.post('/settings', function (req, res) {
-  var donationalertsId = req.body.donationalertsId;
-  var userId = req.get('userId');
+  var donationalertsId = req.body.settings.donationalertsId;
+  var userId = req.body.userId;
 
   if (userId && donationalertsId && !activeUsers.has(userId)) {
     activeUsers.add(userId);
