@@ -18,14 +18,14 @@ export class DonationAlertsSocket {
             socket.emit('add-user', {token: token, type: 'alert_widget'});
         });
 
-        let counter = 0;
+        // let counter = 0;
         socket.on('donation', (msg: any) => {
             const newDonation: DonationAlertsMessage = JSON.parse(msg);
             if (newDonation) {
                 // TODO: remove after tests
-                counter++;
-                newDonation.amount = counter;
-                newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
+                // counter++;
+                // newDonation.amount = counter;
+                // newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
 
                 let videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
 
