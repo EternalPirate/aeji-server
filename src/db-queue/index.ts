@@ -25,9 +25,9 @@ export async function addQueue(userId: string, queueItem: IQueueItem) {
     // get real size of the list
     const size = (await queueRef.collection(StorageCollectionKey).get()).size;
 
-    // increment videoQueueLen
+    // update videoQueueLen
     queueRef.set({
-        videoQueueLen: size + 1,
+        videoQueueLen: size,
         queueType
     }, { merge: true });
 }
