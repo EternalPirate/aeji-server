@@ -27,8 +27,7 @@ function addQueue(userId, queueItem) {
             .collection(StorageKey)
             .doc(queueType);
         // push to collection new queueItem
-        const x = yield queueRef.collection(StorageCollectionKey).add(queueItem);
-        console.log(x);
+        yield queueRef.collection(StorageCollectionKey).add(queueItem);
         // get real size of the list
         const size = (yield queueRef.collection(StorageCollectionKey).get()).size;
         // increment videoQueueLen
