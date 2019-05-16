@@ -27,9 +27,11 @@ export class DonationAlertsSocket {
                 // newDonation.amount = counter;
                 // newDonation.message = '[https://youtu.be/oFElsHvWxn0?t=6058, x2] some text';
 
-                let videoStr = newDonation.message.match(/\[([^)]+)\]/gm)[0];
+                const videoRegArr = newDonation.message.match(/\[([^)]+)\]/gm);
 
-                if (videoStr) {
+                if (videoRegArr && videoRegArr[0]) {
+                    // get video string
+                    let videoStr = videoRegArr[0];
                     // remove brackets
                     videoStr = videoStr.replace(/[\[\]']+/g, '');
 
