@@ -19,20 +19,24 @@ index_1.default.initializeApp({
 const StorageKey = 'queues';
 const StorageCollectionKey = 'list';
 function addQueue(userId, queueItem) {
-    const queueType = queueItem.queueType;
-    const queueRef = index_1.default.firestore()
-        .collection('users')
-        .doc(userId)
-        .collection(StorageKey)
-        .doc(queueType);
-    // push to collection new queueItem
-    queueRef.collection(StorageCollectionKey).add(queueItem);
-    // increment videoQueueLen
-    const increment = index_1.default.firestore.FieldValue.increment(1);
-    queueRef.set({
-        videoQueueLen: increment,
-        queueType
-    }, { merge: true });
+    return __awaiter(this, void 0, void 0, function* () {
+        const queueType = queueItem.queueType;
+        const queueRef = index_1.default.firestore()
+            .collection('users')
+            .doc(userId)
+            .collection(StorageKey)
+            .doc(queueType);
+        // push to collection new queueItem
+        const x = yield queueRef.collection(StorageCollectionKey).add(queueItem);
+        console.log(x);
+        // get real size of the list
+        const size = (yield queueRef.collection(StorageCollectionKey).get()).size;
+        // increment videoQueueLen
+        queueRef.set({
+            videoQueueLen: size + 1,
+            queueType
+        }, { merge: true });
+    });
 }
 exports.addQueue = addQueue;
 function getUsers() {

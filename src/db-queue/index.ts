@@ -10,7 +10,7 @@ admin.initializeApp({
 const StorageKey = 'queues';
 const StorageCollectionKey = 'list';
 
-export function addQueue(userId: string, queueItem: IQueueItem) {
+export async function addQueue(userId: string, queueItem: IQueueItem) {
     const queueType = queueItem.queueType;
     const queueRef = admin.firestore()
         .collection('users')
@@ -18,13 +18,16 @@ export function addQueue(userId: string, queueItem: IQueueItem) {
         .collection(StorageKey)
         .doc(queueType);
 
+
     // push to collection new queueItem
-    queueRef.collection(StorageCollectionKey).add(queueItem);
+    await queueRef.collection(StorageCollectionKey).add(queueItem);
+
+    // get real size of the list
+    const size = (await queueRef.collection(StorageCollectionKey).get()).size;
 
     // increment videoQueueLen
-    const increment = admin.firestore.FieldValue.increment(1);
     queueRef.set({
-        videoQueueLen: increment,
+        videoQueueLen: size + 1,
         queueType
     }, { merge: true });
 }
